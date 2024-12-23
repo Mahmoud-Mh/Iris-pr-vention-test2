@@ -11,12 +11,12 @@ class CommentController extends Controller
     public function store(Request $request, Post $post)
     {
         $request->validate([
-            'comment' => 'required|string|max:1000', // Make sure 'comment' matches form input name
+            'comment' => 'required|string|max:1000', 
         ]);
     
         $post->comments()->create([
             'user_id' => auth()->id(),
-            'comment' => $request->comment,  // This must correspond to the 'comment' field in the database
+            'comment' => $request->comment,
         ]);
     
         return redirect()->route('posts.show', $post)->with('success', 'Comment added successfully!');
